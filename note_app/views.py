@@ -36,3 +36,8 @@ def note_list(request):
     user = request.user
     context = {'user_note':user_note, 'user':user}
     return render(request, 'note_list.html', context)
+
+def note_detail(request, pk):
+    note = Note.objects.get(id=pk)
+    context = {'note':note}
+    return render(request, 'note_detail.html', context)
