@@ -1,0 +1,34 @@
+{%extends 'base.html' %}
+{%load static%}
+{%block content %}
+
+  <body class="bg-dark">
+        <div class="container">
+            <h3 class="text-white text-right">Hello {{user}}</h3>
+            <h2 class="text-white">STARRED NOTES</h2>
+            <br>
+            <div class='row' justify-content-between>
+                {%for note in user_note%}
+                <div class="col-md-4">
+                    <div class="card text-dark" style="width: 18rem;">
+                        <br>
+                        <div class="card-body">
+                        <h2 class="card-title"><a class="text-decoration-none nounderline" href="{%url 'note_detail' note.pk %}">{{note.title}}</a></h2>
+                        <p class="card-text">{{note.note | truncatechars:100}}</p>
+                        <div class="card-footer ">
+                            <div class="text-muted">
+                                {{note.date}}
+                            </div>
+                            <br>
+                            <button class="btn btn-warning float-right"><img width="20px" src="{%static 'star.png'%}" alt="icon star"></button>
+
+                        </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+  </body>
+{% endblock %}

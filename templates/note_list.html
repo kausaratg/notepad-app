@@ -14,14 +14,23 @@
                         <br>
                         <div class="card-body">
                         <h2 class="card-title"><a class="text-decoration-none nounderline" href="{%url 'note_detail' note.pk %}">{{note.title}}</a></h2>
-                        <p class="card-text">{{note.note | truncatechars:100}}</p>
+                        <p class="card-text">{{note.note | truncatechars:30}}</p>
                         <div class="card-footer ">
                             <div class="text-muted">
                                 {{note.date}}
                             </div>
                             <br>
-                            <button class="btn btn-warning float-right"><img width="20px" src="{%static 'star.png'%}" alt="icon star"></button>
-
+                            {%if note.status == 1 %}
+                                <form action="{%url 'starred_notes' note.pk %}" method="POST">
+                                    {%csrf_token%}
+                                    <button type="submit" name='note_id' value="{{note.id}}" class="btn btn-warning float-right"><img width="20px" src="{%static 'star.png'%}" alt="icon star"></button>
+                                </form>
+                            {%else%}
+                                <form action="{%url 'starred_notes' note.pk %}" method="POST">
+                                    {%csrf_token%}
+                                    <button type="submit" name='note_id' value="{{note.id}}" class="btn btn-dark  float-right"><img width="20px" src="{%static 'star.png'%}" alt="icon star"></button>
+                                </form>
+                            {% endif %}
                         </div>
                         </div>
                     </div>

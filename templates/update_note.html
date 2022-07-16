@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+<!doctype html>
+{%load crispy_forms_tags %}
+{%block content%}
+  <div class="container">
+    <div class="col-md-8">
+      <h1 class="text-white">Note</h1>
+      <hr class="bg-white">
+    <form action="" method="POST">
+      {%csrf_token%}
+      {{noteform | crispy}}
+      <input class="btn btn-primary" type='submit' value='Update'>
+    </form>
+    </div>
+  </div>
+
+{%endblock%}
