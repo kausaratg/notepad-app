@@ -11,20 +11,21 @@
   </head>
   <body  class= 'bg-light' >
     <div class="container col-md-7">
-      {%for message in messages %}
+        <br>
+        {%for message in messages %}
         <div class="alert alert-danger" role="alert">
-          {{message}}
-        </div>
-      {% endfor %}
-      <h1>Notepad</h1>
-      <hr>
-      <h3>Register</h3>
+                {{message}}
+          </div>
+        {% endfor %}
+        <h1>Notepad</h1>
+        <hr>
+        <h3>Sign In</h3>
       <form action="" method="POST">
           {%csrf_token%}
               {{form | crispy}}
-              <input class="btn btn-primary" type="submit" value="Register">
+              <input class="btn btn-primary" type="submit" value="Sign In">
       </form>
-      <h5>Have an account? <a href="{%url 'signin' %}">Sign In</a> </h5>
+      <h5>Don't have an account? <a href = "{%url 'index' %}">Register Here</a></h5>
     </div>
   </body>
 </html>

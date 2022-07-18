@@ -8,6 +8,7 @@
             <h2 class="text-white">NOTES</h2>
             <br>
             <div class='row' justify-content-between>
+                {%if user_note%}
                 {%for note in user_note%}
                 <div class="col-md-4">
                     <div class="card text-dark" style="width: 18rem;">
@@ -28,7 +29,7 @@
                             {%else%}
                                 <form action="{%url 'starred_notes' note.pk %}" method="POST">
                                     {%csrf_token%}
-                                    <button type="submit" name='note_id' value="{{note.id}}" class="btn btn-dark  float-right"><img width="20px" src="{%static 'star.png'%}" alt="icon star"></button>
+                                    <button type="submit" name='note_id' value="{{note.id}}" class="btn btn-light  float-right"><img width="20px" src="{%static 'star.png'%}" alt="icon star"></button>
                                 </form>
                             {% endif %}
                         </div>
@@ -37,6 +38,11 @@
                     <br>
                 </div>
                 {%endfor%}
+                {%else%}
+                <div class="alert alert-success col-12" role="alert">
+                    You don't have any note..  Create a <a href="{%url 'note'%}">here</a>
+                  </div>
+                {% endif %}
             </div>
         </div>
   </body>
