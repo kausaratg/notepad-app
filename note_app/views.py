@@ -15,8 +15,8 @@ def index(request):
         form = Userform(request.POST)
         if form.is_valid():
             user = form.save()
-            login(user)
-            return redirect(note)
+            login(request, user)
+            return redirect(note_list)
         messages.info(request, 'unsuccessful registration: invalid information')
     context = {'form':form}
     return render(request, 'index.html', context )
